@@ -4,7 +4,7 @@ import { LetterSvg } from "../LetterSvg/LetterSvg";
 
 const alphabetArr = new Array(26).fill(0);
 
-export const Ring = ({ position, lastLetter }) => {
+export const Ring = ({ position, lastLetter, onAddLetter }) => {
   const prevLetter = useRef(lastLetter);
   useEffect(() => {
     if (lastLetter !== null && lastLetter != prevLetter.current){
@@ -16,6 +16,12 @@ export const Ring = ({ position, lastLetter }) => {
   const handleStepChange = (newStep) => {
     setStep(newStep);
   };
+
+  const handleSymbolClick = (charIdx) => {
+    onAddLetter(String.fromCharCode(charIdx));
+    setStep(charIdx - 65);
+  }
+
   const convertedValue = String.fromCharCode(step + 65);
 
 
@@ -31,6 +37,7 @@ export const Ring = ({ position, lastLetter }) => {
                 <span
                   key={charIdx}
                   className="letter"
+                  onClick={() => handleSymbolClick(charIdx)}
                   style={{ transform: `rotate(${-188 + 13.8 * i - 5}deg)` }}
                 >
                   <LetterSvg charCode={charIdx} active={i == step} flipped />

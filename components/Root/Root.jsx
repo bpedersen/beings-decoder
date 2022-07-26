@@ -13,9 +13,14 @@ export const Root = () => {
       setLastLetter(value.substr(-1));
     }
   };
+
+  const handleAddLetter = (letter) => {
+    setText(text => `${text}${letter}`);
+  }
+
   return (
     <div className="ring">
-      <Ring lastLetter={lastLetter} />
+      <Ring lastLetter={lastLetter} onAddLetter={handleAddLetter} />
       <Translator text={text} onChange={handleTextChange} />
     </div>
   );

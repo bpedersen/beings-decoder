@@ -101,6 +101,11 @@ a {
   
 }
 
+.letter:hover {
+  cursor: pointer;
+  color: #35c6ce;
+}
+
 .a {
   transform: rotate(-180deg);
 }
