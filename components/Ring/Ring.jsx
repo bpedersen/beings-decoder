@@ -29,6 +29,7 @@ export const Ring = ({ position, lastLetter }) => {
               const charIdx = i + 65;
               return (
                 <span
+                  key={charIdx}
                   className="letter"
                   style={{ transform: `rotate(${-188 + 13.8 * i - 5}deg)` }}
                 >
