@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Rotate } from "../Rotate/Rotate";
 import { LetterSvg } from "../LetterSvg/LetterSvg";
+import { alphabetArr } from "../utils";
 
-const alphabetArr = new Array(26).fill(0);
+
 
 export const Ring = ({ position, lastLetter, onAddLetter }) => {
   const prevLetter = useRef(lastLetter);

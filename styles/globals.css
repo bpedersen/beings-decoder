@@ -20,6 +20,23 @@ a {
   box-sizing: border-box;
 }
 
+.list {
+  background: #f7dda9;
+  word-wrap: break-word;
+  padding: 3px 0 3px 6px;
+  border: 1px solid rgba(0,0,0,0.4);
+  border-radius: 10px;
+  letter-spacing: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.letter-select {
+  cursor: pointer;
+}
+
+.letter-select:hover {
+  color: aliceblue;
+}
 
 .curved-text {
   position: relative;
@@ -187,11 +204,30 @@ svg {
 }
 
 
+/* RING OPTIONS CONTAINER */
+.decoder-options {
+  position: fixed;
+  top: 100px;
+}
+
+.decoder-view-change {
+  font-size: 10px;
+  margin: 2px 0 4px;
+}
+
+.decoder-view-change span {
+  cursor: pointer;
+  background: #35c6ce;
+  padding: 1px 2px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+}
+
 /* TRANSLATOR CSS */
 
 .translator-container {
-  position: fixed;
-  top: 100px;
+  position: relative;
+  /* top: 100px; */
 }
 
 .beings-font {

@@ -1,0 +1,1 @@
+export const alphabetArr = new Array(26).fill(0);
