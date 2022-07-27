@@ -13,6 +13,7 @@ export const List = ({ onAddLetter }) => {
         const currentLetter = String.fromCharCode(i + 65);
         return (
           <span
+            key={currentLetter}
             className="beings-font letter-select"
             onClick={() => onAddLetter(currentLetter)}
           >
