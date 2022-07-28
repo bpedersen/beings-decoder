@@ -55,7 +55,7 @@ export const convertFromUnicode = (unicode) => {
         }
         if (char == 'I') {
             switch(unicode[i+1]){
-                case '߆':
+                case 'ነ':
                     skipNext = true;
                     return 'V';
                 case 'ᒋ':
