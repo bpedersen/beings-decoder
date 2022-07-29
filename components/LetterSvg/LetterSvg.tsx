@@ -1,3 +1,5 @@
+import { useTranslatorContext } from "../TranslationProvider/TranslationProvider";
+
 interface LetterSvgProps {
   charCode: number;
   active: boolean;
@@ -9,11 +11,13 @@ export const LetterSvg: React.FC<LetterSvgProps> = ({
   active,
   flipped,
 }) => {
+  const { selectedTranslation } = useTranslatorContext();
   return (
     <span
-      className={`beings-font ${active ? " active" : ""} ${
-        flipped ? " flipped" : ""
-      }`}
+      className={`
+      ${selectedTranslation ? "beings-font" : "regular-font"} ${
+        active ? " active" : ""
+      } ${flipped ? " flipped" : ""}`}
     >
       {String.fromCharCode(charCode)}
     </span>

@@ -94,26 +94,42 @@ input {
   box-shadow: inset -1.5px 0px rgba(0,0,0,0.2), inset 1.5px 0px rgba(0,0,0,0.2);
 }
 
-.ring-head {
+#ring-head {
   transform: rotate(-90deg);
   position: absolute;
   width: 95px;
   height: 95px;
-  background: #f7dda9;
+  /* background: #f7dda9; */
   border-radius: 100%;
   box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.4),
     inset -3.5px -3.5px 0px 2px rgba(255, 255, 255, .25)
 }
 
-.beings-font {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  font-size: 11px;
-/*   transform: skewx(10deg); */
-/*   background: rgba(255,0,0,0.25); */
-  border-radius: 100%;
-  z-index: 1000;
+.ring-container #ring-head {
+  background: #f7dda9;
+  cursor: pointer;
+}
+
+.ring-container .ring-cover {
+  background: #35c6ce;
+}
+
+.ring-container.translate-english #ring-head {
+  background: #35c6ce;
+  
+}
+.ring-container.translate-english .ring-cover {
+  background: #f7dda9;
+}
+
+.ring-container.translate-english .alphabet-display {
+  font-family: 'beings';
+  font-size: 18px;
+}
+
+.regular-font {
+  font-family: sans-serif;
+  font-weight: 900;
 }
 
 .letter {
@@ -146,11 +162,32 @@ input {
   top: 12.5px;
   left: 12.5px;
   border-radius: 100%;
-  background: #35c6ce;
+  /* background: #35c6ce; */
   box-shadow: inset 3px 5px 1px rgba(0, 0, 0, 0.4),
     inset -3.5px -3.5px 1px rgba(255, 255, 255, 1), -7px -5px 0px 2px rgba(0,0,0,.2);
 }
-.ring-cover
+
+.ring-cover:active:hover {
+  transition: box-shadow .2s;
+  box-shadow: inset 2px 4px 1px rgba(0, 0, 0, 0.4),
+    inset -3px -3px 1px rgba(255, 255, 255, 1), -7px -5px 0px 2px rgba(0,0,0,.2);
+}
+
+.ring-cover:active:hover  div {
+  transition: .2s;
+  transform: scale(.97);
+}
+.ring-cover:active:hover .alphabet-display {
+  display: none;
+  z-index: 99;
+  opacity: 0;
+  transform: rotate(90deg) scale(.95);
+  position: absolute;
+  font-size: 11px;
+  font-family: 'beings';
+  top: 50px;
+  left: 32px;
+}
 
 .rainbow-bg {
   background: linear-gradient(

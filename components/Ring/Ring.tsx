@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Rotate } from "../Rotate/Rotate";
 import { LetterSvg } from "../LetterSvg/LetterSvg";
 import { alphabetArr } from "../utils";
+import {
+  BeeBooLangType,
+  TranslationType,
+  useTranslatorContext,
+} from "../TranslationProvider/TranslationProvider";
 
 interface RingProps {
   lastLetter: string;
@@ -9,6 +14,8 @@ interface RingProps {
 }
 
 export const Ring: React.FC<RingProps> = ({ lastLetter, onAddLetter }) => {
+  const { selectedTranslation, toggleTranslationType, beebooType } =
+    useTranslatorContext();
   const prevLetter = useRef<string>(lastLetter);
   const [step, setStep] = useState<number>(0);
 
@@ -28,12 +35,27 @@ export const Ring: React.FC<RingProps> = ({ lastLetter, onAddLetter }) => {
     setStep(charIdx - 65);
   };
 
+  const handleHeadClick = (e) => {
+    if (e.target.id !== "ring-cover") return;
+    toggleTranslationType();
+  };
+
   const convertedValue = String.fromCharCode(step + 65);
 
   return (
-    <>
+    <div
+      className={`ring-container ${
+        selectedTranslation == TranslationType.BeeBooToEnglish
+          ? "translate-beeboo"
+          : "translate-english"
+      }
+        ${
+          beebooType == BeeBooLangType.Typed ? "beeboo-typed" : "beeboo-written"
+        }
+      `}
+    >
       <div className="ring-holder"></div>
-      <div className="ring-head">
+      <div id="ring-head" onClick={handleHeadClick}>
         <Rotate onStepChange={handleStepChange} step={step}>
           <div className="beings-font">
             {alphabetArr.map((_, i) => {
@@ -51,7 +73,7 @@ export const Ring: React.FC<RingProps> = ({ lastLetter, onAddLetter }) => {
             })}
           </div>
         </Rotate>
-        <div className="ring-cover">
+        <div className="ring-cover" id="ring-cover">
           <div className="ring-glass rainbow-bg oval-clip"></div>
           <div className="alphabet-display">{convertedValue}</div>
           <div className="ring-glass rainbow-bg circle-clip">
@@ -107,6 +129,6 @@ export const Ring: React.FC<RingProps> = ({ lastLetter, onAddLetter }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

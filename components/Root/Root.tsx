@@ -3,6 +3,10 @@ import { Ring } from "../Ring/Ring";
 import { List } from "../List/List";
 import { Translator } from "../Translator/Translator";
 import { Decoder } from "../Decoder/Decoder";
+import {
+  BeeBooLangType,
+  useTranslatorContext,
+} from "../TranslationProvider/TranslationProvider";
 
 enum ViewType {
   RING,
@@ -10,8 +14,10 @@ enum ViewType {
 }
 
 export const Root = () => {
+  const { selectedTranslation, toggleBeeBooType, beebooType } =
+    useTranslatorContext();
+  const { text, setText } = useTranslatorContext();
   const [view, setView] = useState<ViewType>(ViewType.RING);
-  const [text, setText] = useState<string>("");
   const [lastLetter, setLastLetter] = useState<string | null>(null);
 
   const handleTextChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -39,7 +45,7 @@ export const Root = () => {
   const isRingView = view == ViewType.RING;
 
   return (
-    <div className="ring">
+    <div className={`ring ${selectedTranslation}`}>
       {isRingView ? (
         <Ring lastLetter={lastLetter} onAddLetter={handleAddLetter} />
       ) : (
@@ -47,12 +53,12 @@ export const Root = () => {
       )}
       <div className="decoder-options">
         <div className="decoder-view-change">
-          <span onClick={toggleView}>
-            Change to {isRingView ? "List" : "Ring"} View
+          <span onClick={toggleView}>{isRingView ? "Ring" : "List"}</span>
+          <span onClick={toggleBeeBooType}>
+            {beebooType == BeeBooLangType.Typed ? "Typed" : "Classic"}
           </span>
         </div>
-        <Translator text={text} onChange={handleTextChange} />
-        <Decoder />
+        <Translator onChange={handleTextChange} />
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ export const unicodeLookup = {
     V: 'Iነ', // 'I߆', // ['23b8', '03df'],
     W: 'ᒒ', //'ךּ', // 'ᒬ', // ['fb33'],
     X: '>', // ['003e', '323'], //'ر', // 
-    Y: 'Iᶦ', //['20eb'],
+    Y: '❙ᶦ', //['20eb'],
     // Y: ['002f', '338', '002f'], // ['1425'],
     Z: '⎳'
     }
@@ -59,7 +59,7 @@ export const convertFromUnicode = (unicode: string): string => {
         if (char == 'ךּ') {
             return 'W';
         }
-        if (char == 'I') {
+        if (char == 'I' || char == '❙') {
             switch(unicode[i+1]){
                 case 'ነ':
                     skipNext = true;
