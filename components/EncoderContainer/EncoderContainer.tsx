@@ -18,11 +18,7 @@ export const EncoderContainer: React.FC<EncoderContainerProps> = ({
   };
   return (
     <>
-      {usingEncoder ? (
-        <Translator text={text} onChange={handleTextChange} />
-      ) : (
-        <Decoder />
-      )}
+      {usingEncoder ? <Translator onChange={handleTextChange} /> : <Decoder />}
       <div className="decoder-view-change">
         <span onClick={toggleTool}>
           Change to {usingEncoder ? "Decoder" : "Encoder"}
