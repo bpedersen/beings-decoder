@@ -33,20 +33,20 @@ export const unicodeLookup = {
     }
 
 export const reverseUnicodeLookup = Object.entries(unicodeLookup)
-.reduce((acc, [key, value]) => {
-    acc[value] = key;
-    return acc;
-}, {});
+    .reduce((acc, [key, value]) => {
+        acc[value] = key;
+        return acc;
+    }, {});
 
 
-export const convertToUnicode = (text) => {
+export const convertToUnicode = (text: string): string => {
     return text.split('').map(c => {
         const lookupValue = unicodeLookup[c.toUpperCase()];
         return lookupValue || c;
     }).join('');
 }
 
-export const convertFromUnicode = (unicode) => {
+export const convertFromUnicode = (unicode: string): string => {
     let skipNext = false;
     return unicode.split('').map((char, i) => {
         if (skipNext){
@@ -78,10 +78,3 @@ export const convertFromUnicode = (unicode) => {
     }
     ).join('');
 }
-
-
-// export const Unicode = ({letter}) => {
-//     const value = unicodeLookup[letter.toUpperCase()];
-//     const parsedUnicode = Array.isArray(value) ? value.map(c => String.fromCodePoint(parseInt(c, 16))) : value;
-//     return <span className="unicode-display">{parsedUnicode}</span>
-// }

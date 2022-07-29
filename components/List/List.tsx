@@ -1,12 +1,10 @@
-import { LetterSvg } from "../LetterSvg/LetterSvg";
 import { alphabetArr } from "../utils";
 
-const fiveLengthArr = new Array(5).fill("i");
+interface ListProps {
+  onAddLetter: (letter: string) => void;
+}
 
-export const List = ({ onAddLetter }) => {
-  const handleClick = (idx) => {
-    onAddLetter(String.fromCharCode(idx + 65));
-  };
+export const List: React.FC<ListProps> = ({ onAddLetter }) => {
   return (
     <div className="list">
       {alphabetArr.map((_, i) => {

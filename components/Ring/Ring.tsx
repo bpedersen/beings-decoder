@@ -3,17 +3,22 @@ import { Rotate } from "../Rotate/Rotate";
 import { LetterSvg } from "../LetterSvg/LetterSvg";
 import { alphabetArr } from "../utils";
 
+interface RingProps {
+  lastLetter: string;
+  onAddLetter: (letter: string) => void;
+}
 
+export const Ring: React.FC<RingProps> = ({ lastLetter, onAddLetter }) => {
+  const prevLetter = useRef<string>(lastLetter);
+  const [step, setStep] = useState<number>(0);
 
-export const Ring = ({ position, lastLetter, onAddLetter }) => {
-  const prevLetter = useRef(lastLetter);
   useEffect(() => {
-    if (lastLetter !== null && lastLetter != prevLetter.current){
+    if (lastLetter !== null && lastLetter != prevLetter.current) {
       setStep(lastLetter.toUpperCase().charCodeAt(0) - 65);
       prevLetter.current = lastLetter;
     }
-  }, [lastLetter, prevLetter])
-  const [step, setStep] = useState(0);
+  }, [lastLetter, prevLetter]);
+
   const handleStepChange = (newStep) => {
     setStep(newStep);
   };
@@ -21,10 +26,9 @@ export const Ring = ({ position, lastLetter, onAddLetter }) => {
   const handleSymbolClick = (charIdx) => {
     onAddLetter(String.fromCharCode(charIdx));
     setStep(charIdx - 65);
-  }
+  };
 
   const convertedValue = String.fromCharCode(step + 65);
-
 
   return (
     <>
